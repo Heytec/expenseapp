@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.contrib import messages
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -52,7 +54,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'expenses',
-    'authentication'
+    'authentication',
+    'userpreferences.apps.UserpreferencesConfig',
+    'userincome'
+
 
 ]
 
@@ -157,6 +162,19 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
+
+# email stuff
+# EMAIL_HOST = os.environ.get('EMAIL_HOST')
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_PORT = 587
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
